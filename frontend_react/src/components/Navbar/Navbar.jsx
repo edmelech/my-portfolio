@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { HiMenuAlt4, Hix } from 'react-icons/hi';
+import { HiMenuAlt4, HiX } from 'react-icons/hi';
 import { motion } from 'framer-motion';
 
 import { images } from '../../constants'
@@ -30,7 +30,7 @@ const [toggle, setToggle] = useState(false)
                 whileInView={{ x: [300, 0]}}
                 transition={{ duration: 0.85, ease: 'easeOut' }}
               >
-                <Hix onClick={() => setToggle(false)} />
+                <HiX onClick={() => setToggle(false)} />
                 {['home', 'about', 'work', 'skills', 'contact'].map((item) => (
                   <li key={item}>
                     <a href={`#${item}`} onClick={() => setToggle(false)}>{item}</a>
