@@ -17,7 +17,7 @@ const scaleVariants = {
 };
 
 const Header = () => (
-  <div id='home' className="app__header app__flex">
+  <div className="app__header app__flex">
     <motion.div
       whileInView={{ x: [-100, 0], opacity: [0, 1] }}
       transition={{ duration: 0.5 }}
@@ -61,11 +61,11 @@ const Header = () => (
     >
       {[images.flutter, images.redux, images.sass].map((circle, index) => (
         <div className="circle-cmp app__flex" key={`circle-${index}`}>
-          <img src={circle} alt="profile_bg" />
+          <img src={circle} alt="circle" />
         </div>
       ))}
     </motion.div>
   </div>
 );
 
-export default Header
+export default AppWrap(Header, 'home');
