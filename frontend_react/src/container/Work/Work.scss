@@ -25,6 +25,17 @@
 
     &:hover {
       background-color: var(--secondary-color);
+      color: #fff;
     }
+
+    @media screen and (min-width: 2000px) {
+      padding: 1rem 2rem;
+      border-radius: 0.85;
+    }
+  }
+
+  .item-active {
+    background-color: var(--secondary-color);
+    color: #fff;
   }
 }
