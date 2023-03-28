@@ -6,9 +6,17 @@ import { AppWrap, MotionWrap } from '../../wrapper';
 import { urlFor, client } from '../../client';
 import './Work.scss';
 
+
 const Work = () => {
   const [works, setWorks] = useState([]);	
-  const [filterWork, setFilterWork] = useState([]);
+  const [filterWork, setFilterWork] = useState([{
+    codeLink: "https://github.com/edmelech/djmelech-website",
+    description: "A website I built using react",
+    imgUrl: {_type: 'image', asset: {}},
+    projectLink: "https://djmelech.com",
+    tags:['All', 'UI/UX', 'Frontend'],
+    title: "DJ website"
+    }]);
   const [activeFilter, setActiveFilter] = useState('All');
   const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
 
@@ -16,9 +24,12 @@ const Work = () => {
    const query = '*[_type == "works"]';
 
    client.fetch(query).then((data) => {
+    
+    console.log('data', data)
 
       setWorks(data);
       setFilterWork(data);
+      console.log('filterWork', filterWork)
     });
   }, []);
   
@@ -34,7 +45,10 @@ const Work = () => {
         setFilterWork(works.filter((work) => work.tags.includes(item)));	
       }	
     }, 500);
+
   }
+
+  
 
   return (
     <>
@@ -53,14 +67,16 @@ const Work = () => {
       </div>
 
       <motion.div
+
         animate={animateCard}
         transition={{ duration: 0.5, delayChildren: 0.5 }}
         className="app__work-portfolio"
       >
-        {filterWork.map((work, index) => (
+
+        {filterWork && filterWork.length > 1 && filterWork.map((work, index) => (
           <div className="app__work-item app__flex" key={index}>
             <div className="app__work-img app__flex">
-              <img src={urlFor(work.imgUrl)} alt={work.name} />
+              <img src={urlFor(work.imgUrl)}  />
 
               <motion.div
                 whileHover={{ opacity: [0, 1] }}
@@ -95,7 +111,6 @@ const Work = () => {
               <p className="p-text" style={{ marginTop: 10 }}>{work.description}</p>
             
               <div className="app__work-tag app__flex">
-                <p className="p-text">{work.tags[0]}</p>
               </div>
             </div>
 
@@ -106,7 +121,7 @@ const Work = () => {
   );
 };
 
-		
+
 export default AppWrap(	
   MotionWrap(Work, 'app__works'),	
   'work',	
