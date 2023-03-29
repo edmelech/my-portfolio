@@ -9,14 +9,7 @@ import './Work.scss';
 
 const Work = () => {
   const [works, setWorks] = useState([]);	
-  const [filterWork, setFilterWork] = useState([{
-    codeLink: "https://github.com/edmelech/djmelech-website",
-    description: "A website I built using react",
-    imgUrl: {_type: 'image', asset: {}},
-    projectLink: "https://djmelech.com",
-    tags:['All', 'UI/UX', 'Frontend'],
-    title: "DJ website"
-    }]);
+  const [filterWork, setFilterWork] = useState([]);
   const [activeFilter, setActiveFilter] = useState('All');
   const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
 
@@ -25,11 +18,8 @@ const Work = () => {
 
    client.fetch(query).then((data) => {
     
-    console.log('data', data)
-
       setWorks(data);
       setFilterWork(data);
-      console.log('filterWork', filterWork)
     });
   }, []);
   
