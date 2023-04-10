@@ -20,10 +20,9 @@ const Skills = () => {
          setExperience(data);
      });
 
-     client.fetch(query)
+     client.fetch(skillsQuery)
       .then((data) => {
         setSkills(data)
-      setExperience(data);
     });
    }, []);
 
