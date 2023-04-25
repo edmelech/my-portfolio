@@ -30,12 +30,14 @@ const Testimonial = () => {
 
    const test = testimonials[currentIndex]
 
+   console.log('test data', test)
+
   return (
     <>
       {testimonials.length && (
         <>
           <div className='app__testimonial-item app__flex'>
-            <img src={urlFor(test.imgurl)} alt={test.name} />
+            <img src={urlFor(test.imageurl).url()} alt={test.name} />
             <div className='app__testimonial-content'>
               <p className='p-text'>{test.feedback}</p>
               <div>
@@ -43,6 +45,9 @@ const Testimonial = () => {
                 <h5 className='p-text'>{test.company  }</h5>
               </div>
             </div>
+          </div>
+          <div>
+            
           </div>
         </>
       )}
