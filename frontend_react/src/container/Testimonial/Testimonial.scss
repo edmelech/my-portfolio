@@ -68,8 +68,37 @@
 
   h5 {
     font-weight: 400;
-    color: var(--grar-color);
+    color: var(--gray-color);
     margin-top: 5px;
+  }
+}
+
+.app__testimonial-btns {
+  flex-direction: row;
+  margin-top: 2rem;
+
+  div {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--white-color);
+
+    margin: 1rem;
+    transition: all 0.3s ease-in-out;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      color: var(--seondary-color);
+    }
+
+    &:hover {
+      background-color: var(--secondary-color);
+
+      svg {
+        color: var(--white-color);
+      }
+    }
   }
 }
 
@@ -91,7 +120,7 @@
 
     &:hover {
       img {
-        filter: grayscale(0)
+        filter: grayscale(0);
       }
     }
 
@@ -109,5 +138,4 @@
   @media screen and (max-width: 800px) {
     width: 100%;
   }
-  
 }
