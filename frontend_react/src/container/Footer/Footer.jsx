@@ -8,7 +8,32 @@ import './Footer.scss';
 const Footer = () => {
   const [formData, setformData] = useState({name: '', email: '', message: ''})
   const [isFormSubmitted, setisFormSubmitted] = useState(false)
-  const [loading, setloading] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const { name, email, message } = formData; 
+
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+
+    setformData({...formData, [name]: value})
+  }
+
+  const handleSubmit = () => {
+    setLoading(true);
+
+    const contact = {
+      _type: 'contact',
+      name: name,
+      email: email,
+      message: message,
+    }
+
+    client.create(contact)
+      .then(() => {
+        setLoading=(false);
+        setisFormSubmitted=(true)
+      })
+  }
 
   return (
     <>
@@ -25,6 +50,8 @@ const Footer = () => {
         </div>
       </div>
 
+      {!isFormSubmitted ?
+      
       <div className='app__footer-form app__flex'>
         <div className='app__flex'>
           <input className='p-text' type='text' placeholder='Your Name' name={name} value={name} onChange={handleChangeInput}/>
@@ -38,11 +65,15 @@ const Footer = () => {
             placeholder='Your Message'
             value={message}
             name={message}
-            onChange={handleChangeInput}
+            onChange={handleChangeInput} 
           />
         </div>
         <button type='button' className='p-text' onClick={handleSubmit}>{loading ? 'SENDING' : 'Send Message'}</button>
-      </div>
+      </div> 
+      : <div>
+        <h3 className='head-text'>Thank you for getting in touch!</h3>
+      </div>}
+      
     </>
   )
 }
